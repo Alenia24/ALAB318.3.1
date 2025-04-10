@@ -123,15 +123,21 @@ router.route("/:id/comments").get((req, res, next) => {
       // Part 13
       // GET /users/:id/comments?postId=<VALUE>
       // http://127.0.0.1:3000/api/users/1/comments?postId=1&api-key=perscholas
+
+      // Create a comments array
       let commentsArr = [];
+      // Iterate through each comment
       comments.forEach((comment) => {
+        //If the postid and userId match the entered data
         if (
           comment.postId == req.query.postId &&
           comment.userId == req.params.id
         ) {
+          // Add the comment body to the commentsArr
           commentsArr.push(comment.body);
         }
       });
+      // Display all the comments made by the user on the specifies post
       res.json(commentsArr);
     } else next();
   } else next();
