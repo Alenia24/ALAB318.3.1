@@ -84,9 +84,9 @@ router
     else next();
   });
 
-  //Part 1 
-  // GET /api/users/:id/posts
-  // 
+//Part 1
+// GET /api/users/:id/posts
+// http://127.0.0.1:3000/api/users/3/posts?api-key=perscholas
 router.route("/:id/posts").get((req, res, next) => {
   // Check if the user exists
   const user = users.find((u) => u.id == req.params.id);
@@ -98,10 +98,6 @@ router.route("/:id/posts").get((req, res, next) => {
     posts.forEach((post) => {
       if (post.userId == req.params.id) {
         postArr.push(post);
-      } else {
-        // If the user has no post
-        //res.json(`User has no posts!`);
-        next();
       }
     });
     res.json(postArr);
